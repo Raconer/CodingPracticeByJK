@@ -19,7 +19,6 @@ object TestRunner {
             return
         }
 
-
         println("[TEST START] : ${clazz.simpleName}")
 
         try {
@@ -36,36 +35,28 @@ object TestRunner {
     }
 
     fun run(clazz: KClass<*>) {
-       /* if (!clazz.hasAnnotation<TestCase>()) {
+        val method = clazz.members.firstOrNull {
+            it.name == Constants.TEST_MEHTOD_NAME
+        } ?: run {
             println("${Constants.NOT_ANNOTATION_MSG} ${clazz.simpleName}")
             return
         }
 
-        println("🧪 테스트 시작: ${clazz.simpleName}")
+        println("[TEST START] : ${clazz.simpleName}")
 
         try {
-            val instance = clazz.constructors.first().call()
+            val constructor = clazz.constructors.first()
+            val instance = constructor.call()
 
-            // 공통 Before
-
-            var result: Any? = null
-            val elapsed = measureNanoTime {
-                val execMethod = clazz.declaredFunctions.firstOrNull { it.name == "execute" }
-                    ?: error("execute() 메서드가 존재하지 않습니다")
-                result = execMethod.call(instance)
+            val result = method.call(instance)
+            (result as? TestCaseList)?.let { resultList ->
+                this.check(resultList)
             }
-
-            // 공통 After
-
-            println("🟢 결과: $result")
-            println("⏱ 실행 시간: %.3f ms".format(elapsed / 1_000_000.0))
 
         } catch (e: Exception) {
             println("❌ 실행 실패: ${e.message}")
             e.printStackTrace()
         }
-
-        println("==================================")*/
     }
 
     private fun check(resultList:TestCaseList){

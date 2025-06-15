@@ -1,4 +1,4 @@
-package exam;
+package com.java.exam;
 
 import test.TestRunner;
 import test.vo.TestCaseList;
