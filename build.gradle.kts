@@ -18,10 +18,12 @@ sourceSets {
     main {
         java.srcDirs("src/main/java")
         kotlin.srcDirs("src/main/kotlin")
+        kotlin.srcDirs("src/main/common")
     }
     test {
         java.srcDirs("src/test/java")
         kotlin.srcDirs("src/test/kotlin")
+        kotlin.srcDirs("src/test/common")
     }
 }
 
@@ -30,6 +32,8 @@ repositories {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+
     testImplementation(kotlin("test"))
 }
 
