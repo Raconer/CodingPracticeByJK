@@ -69,15 +69,29 @@ object TestRunner {
 
             println("""
                 ================== 🧪 테스트 케이스(${result.index}) ==================
-                🟢 예상  : ${result.expected.toString().padEnd(30)}
-                🔵 결과  : ${actualResult.toString().padEnd(30)}
+                🟢 예상  : ${formatResult(result.expected).padEnd(30)}
+                🔵 결과  : ${formatResult(actualResult).padEnd(30)}
                 ⏱ 시간  : ${"%.3f ms".format(elapsedMs).padEnd(30)}
-                ✅ 결과  : ${if (result.expected == actualResult) "✅ SUCCESS" else "❌ FAIL"}
+                ✅ 결과  : ${if (isEqual(result.expected, actualResult)) "✅ SUCCESS" else "❌ FAIL"}
                 =====================================================
-            
             """.trimIndent())
         }?:run{
             println("테스트 케이스가 없습니다.")
+        }
+    }
+    fun isEqual(expected: Any?, actual: Any?): Boolean {
+        return when {
+            expected is IntArray && actual is IntArray -> expected contentEquals actual
+            expected is Array<*> && actual is Array<*> -> expected contentDeepEquals actual
+            else -> expected == actual
+        }
+    }
+
+    fun formatResult(value: Any?): String {
+        return when (value) {
+            is IntArray -> value.joinToString(", ", "[", "]")
+            is Array<*> -> value.contentDeepToString()
+            else -> value.toString()
         }
     }
 }

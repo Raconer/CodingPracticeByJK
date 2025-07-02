@@ -1,9 +1,10 @@
-package com.kotlin.exam
+package com.kotlin
 
-import test.TestRunner.run
+import com.kotlin.exam.Solution
+import test.TestRunner
 import test.vo.TestCaseList
 
-class Solution {
+class TestCodingTest {
     fun solution(s:String):String{
         return s
     }
@@ -17,5 +18,5 @@ class Solution {
 }
 
 fun main() {
-    run(Solution::class)
+    TestRunner.run(TestCodingTest::class)
 }
