@@ -31,6 +31,8 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
+!**/src/main/kotlin/com/kotlin/exam/
+!**/src/main/java/com/java/exam/
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
