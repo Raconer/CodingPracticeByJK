@@ -31,8 +31,6 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
-!**/src/main/kotlin/com/kotlin/exam/
-!**/src/main/java/com/java/exam/
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -45,3 +43,5 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/src/main/kotlin/com/kotlin/exam/
+/src/main/java/com/java/exam/
